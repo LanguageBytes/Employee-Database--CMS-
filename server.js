@@ -24,30 +24,89 @@ connection.connect(function(err) {
 });
 
 
-console.log(chalk.black.bgCyanBright(`_______________________________________________
+console.log(chalk.black.bgWhiteBright(`
+-----------------------------------------------
 ╔═╗┌┬┐┌─┐┬  ┌─┐┬ ┬┌─┐┌─┐  ╔╦╗┌─┐┌┐┌┌─┐┌─┐┌─┐┬─┐
 ║╣ │││├─┘│  │ │└┬┘├┤ ├┤   ║║║├─┤│││├─┤│ ┬├┤ ├┬┘
 ╚═╝┴ ┴┴  ┴─┘└─┘ ┴ └─┘└─┘  ╩ ╩┴ ┴┘└┘┴ ┴└─┘└─┘┴└─
 ____Select an option below to get started _____
-_______________________________________________
+-----------------------------------------------
 `));
 
-startInq() 
+"View All Employees", 
+"Add Employee",
+"Update Employee role?", 
+"View All Roles",
+"Add Role",
+"View All Departments",
+"Add Department",
+"Quit"
+
+// Prompt User for Choices
+const startInq = () => {
   inquirer.prompt([
-  {
-  type: "list",
-  message: "What would you like to do?",
-  name: "choice",
-  choices: [
-            "View All Employees?", 
-            "View All Employee's By Roles?",
-            "View all Emplyees By Deparments", 
-            "Update Employee",
-            "Add Employee?",
-            "Add Role?",
-            "Add Department?"
+      {
+        name: 'choices',
+        type: 'list',
+        message: 'Select:',
+        choices: [
+         "View All Employees", 
+         "Add Employee",
+         "Update Employee role?", 
+         "View All Roles",
+         "Add Role",
+         "View All Departments",
+         "Add Department",
+         "Quit",
+         'Exit'
           ]
-}
-  ])
+      }
+    ])
+    .then((answers) => {
+      const {choices} = answers;
+
+        if (choices === 'View All Employees') {
+        viewAllEmployees();
+        }
+        
+        if (choices === 'Add Employee') {
+        addEmployee();
+      }
+
+        if (choices === 'View All Roles') {
+        viewAllRoles();
+      }
+
+        if (choices === 'Add Role') {
+        addRole();
+       }
+
+        if (choices === 'View All Departments') {
+          viewAllDepartments();
+      }
+
+        if (choices === 'Add a Department') {
+        addDepartment();
+       }
+
+        if (choices === 'Exit') {
+            connection.end();
+        }
+  });
+};
+ 
+viewAllEmployees()
+
+
+addEmployee()
+
+
+addRole()
+
+
+viewAllDepartments()
+
+addDepartment()
+
 
 
