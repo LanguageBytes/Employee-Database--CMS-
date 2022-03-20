@@ -33,15 +33,6 @@ ____Select an option below to get started _____
 -----------------------------------------------
 `));
 
-"View All Employees", 
-"Add Employee",
-"Update Employee role?", 
-"View All Roles",
-"Add Role",
-"View All Departments",
-"Add Department",
-"Quit"
-
 // Prompt User for Choices
 const startInq = () => {
   inquirer.prompt([
@@ -52,13 +43,12 @@ const startInq = () => {
         choices: [
          "View All Employees", 
          "Add Employee",
-         "Update Employee role?", 
+         "Update Employee Role", 
          "View All Roles",
          "Add Role",
          "View All Departments",
          "Add Department",
-         "Quit",
-         'Exit'
+         "Exit",
           ]
       }
     ])
@@ -73,6 +63,10 @@ const startInq = () => {
         addEmployee();
       }
 
+      if (choices === 'Update Employee Role') {
+        updateEmployeeRole();
+      }
+
         if (choices === 'View All Roles') {
         viewAllRoles();
       }
@@ -82,10 +76,10 @@ const startInq = () => {
        }
 
         if (choices === 'View All Departments') {
-          viewAllDepartments();
+        viewAllDepartments();
       }
 
-        if (choices === 'Add a Department') {
+        if (choices === 'Add Department') {
         addDepartment();
        }
 
@@ -94,19 +88,36 @@ const startInq = () => {
         }
   });
 };
- 
-viewAllEmployees()
+
+// VIEW
+
+// View All Employees
+function viewAllEmployees() {
+  connection.query("SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(e.first_name, ' ' ,e.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee e on employee.manager_id = e.id;", 
+  function(err, res) {
+    if (err) throw err
+    console.table(res)
+    startInq()
+})
+}
+
+// View All Roles
+function viewAllRoles() {
+connection.query("SELECT employee.first_name, employee.last_name, role.title AS Title FROM employee JOIN role ON employee.role_id = role.id;", 
+function(err, res) {
+if (err) throw err
+console.table(res)
+startInq()
+})
+}
 
 
-addEmployee()
-
-
-addRole()
-
-
-viewAllDepartments()
-
-addDepartment()
-
-
-
+// View All Departments
+function viewAllDepartments() {
+connection.query("SELECT department.name AS Department FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id ORDER BY employee.id;", 
+function(err, res) {
+  if (err) throw err
+  console.table(res)
+  startInq()
+})
+}
