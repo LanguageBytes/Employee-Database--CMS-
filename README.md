@@ -1,4 +1,4 @@
-# <p align = "center"> Content Management System - Employee Manager </p>
+# <p align = "center"> Employee Manager (CMS) </p>
 
 A basic employee content management system built using SQL, Node.js and inquirer.
 
