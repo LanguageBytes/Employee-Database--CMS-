@@ -28,7 +28,7 @@ This should bring up a list of options to add or alter the data in the employee 
 
 - Creating delete options
 - Creating more options for viewing the data
-- Refactoring the code, played with several structures, need to evaluate the best way and consistently stick to it.
+- Refactoring the code, played with several structures, need to get used to using functional loops, need to evaluate the best way and consistently stick to it.
 - Creating more functionality - being able to view and update more options
 
   ## License 
