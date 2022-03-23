@@ -1,13 +1,13 @@
-# Employee CMS - 'Employee Tracker'
-
+# <p align = "center"> Content Management System - Employee Manager </p>
 
 A basic employee content management system built using SQL, Node.js and inquirer.
 
+<p align = "center"> 
+<img src="Employee-CMS.gif"/> 
+</p>
+
+
 Please see here for link to the demonstration video -https://watch.screencastify.com/v/wAPElb5gXGW2AXMsTWBj 
-
-# Future Developments
-
-
 
 ## Installation
 
