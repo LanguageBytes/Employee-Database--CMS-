@@ -33,7 +33,7 @@ ____Select an option below to get started _____
 -----------------------------------------------
 `));
 
-// Prompt User for Choices
+// Prompt User 
 const startInq = () => {
   inquirer.prompt([
       {
@@ -248,6 +248,64 @@ const addDepartment = () => {
   })
   .catch(err => {
     console.error(err);
+  });
+}
+
+// UPDATE -------------------------------------------------------------------------------------------------------------------
+// Update Employee Role
+const updateEmployeeRole = () => {
+  connection.query("SELECT * FROM EMPLOYEE", (err, emplRes) => {
+    if (err) throw err;
+    const selectedEmployee = [];
+    emplRes.forEach(({ first_name, last_name, id }) => {
+      selectedEmployee.push({
+        name: first_name + " " + last_name,
+        value: id
+      });
+    });
+    connection.query("SELECT * FROM ROLE", (err, rolRes) => {
+      if (err) throw err;
+      const selectedRole = [];
+      rolRes.forEach(({ title, id }) => {
+       selectedRole.push({
+          name: title,
+          value: id
+          });
+        });
+     
+      const questions = [
+        {
+          type: "list",
+          name: "id",
+          choices: selectedEmployee,
+          message: "Select an Employee to update"
+        },
+        {
+          type: "list",
+          name: "role_id",
+          choices:selectedRole,
+          message: "Choose a new role"
+        }
+      ]
+  
+      inquirer.prompt(questions)
+        .then(response => {
+          const query = `UPDATE EMPLOYEE SET ? WHERE ?? = ?;`;
+          connection.query(query, [
+            {role_id: response.role_id},
+            "id",
+            response.id
+          ], (err, res) => {
+            if (err) throw err;
+            
+            console.log("Employee updated");
+            startInq();
+          });
+        })
+        .catch(err => {
+          console.error(err);
+        });
+      })
   });
 }
 
