@@ -195,3 +195,59 @@ function addEmployee() {
 })
 }
 
+// Add a Role
+function addRole() { 
+  connection.query("SELECT role.title AS Title, role.salary AS Salary FROM role", function (err, res) {
+    inquirer.prompt([
+        {
+          name: "Title",
+          type: "input",
+          message: "Enter the name of the role"
+        },
+        {
+          name: "Salary",
+          type: "input",
+          message: "Enter the salary (must be a number)"
+  
+        } 
+    ]).then(function(res) {
+        connection.query(
+            "INSERT INTO role SET ?",
+            {
+              title: res.Title,
+              salary: res.Salary,
+            },
+            function(err) {
+                if (err) throw err
+                console.table(res);
+                startInq();
+            }
+        )
+    });
+  });
+  }
+
+//Add a Department
+const addDepartment = () => {
+   const question = [
+    {
+      type: "input",
+      name: "name",
+      message: "Enter the name of the new department"
+    }];
+    
+  inquirer.prompt(question)
+  .then(response => {
+    const query = `INSERT INTO department (name) VALUES (?)`;
+    connection.query(query, [response.name], (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      console.log(`New ${response.name} department at ID ${res.insertId}`);
+      startInq();
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+
