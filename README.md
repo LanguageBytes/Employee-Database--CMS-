@@ -33,5 +33,5 @@ This should bring up a list of options to add or alter the data in the employee 
 
   ## License 
   This project is licensed under apache 
-  
-   [![License](https://img.shields.io/badge/License-apache_1.0-lightblue.svg)]
+
+   ![License](https://img.shields.io/badge/License-apache_1.0-lightblue.svg)
