@@ -6,7 +6,7 @@
 <img src="Employee-CMS.gif"/> 
 </p>
 
-Please see here for link to the demonstration video -https://watch.screencastify.com/v/wAPElb5gXGW2AXMsTWBj 
+Please see here for the link to the demonstration video -https://watch.screencastify.com/v/wAPElb5gXGW2AXMsTWBj 
 
 ## Installation
 
