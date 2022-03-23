@@ -14,7 +14,7 @@ Please see here for the link to the demonstration video -https://watch.screencas
 npm i
 
 ```
-*Node and sql must be installed
+*Node and SQL must be installed
 
 ## Usage
 
